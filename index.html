@@ -1308,7 +1308,7 @@ function setSyncDot(state) {
 async function persist() {
   nextId = Math.max(...creators.map(c => c.id || 0), 0) + 1;
   // Always save locally first
-  try { localStorage.setItem('gd-v2-local', JSON.stringify(creators)); } catch(e) {}
+  try { localStorage.setItem('ai-tracker-v2-local', JSON.stringify(creators)); } catch(e) {}
   if (!gAccessToken) { setSyncDot('local'); return; }
   setSyncDot('syncing');
   try {
@@ -2219,11 +2219,11 @@ function signOut() {
         if (el) el.textContent = ago ? d + ' · ' + ago : d;
       }
       setSyncDot('synced');
-      try { localStorage.setItem('gd-v2-local', JSON.stringify(creators)); } catch(e) {}
+      try { localStorage.setItem('ai-tracker-v2-local', JSON.stringify(creators)); } catch(e) {}
     } else {
       // Fall back to localStorage
       try {
-        const local = localStorage.getItem('gd-v2-local');
+        const local = localStorage.getItem('ai-tracker-v2-local');
         if (local) {
           const parsed = JSON.parse(local);
           if (Array.isArray(parsed) && parsed.length > 0) {
